@@ -1,2 +1,2 @@
-# python_basic_may2022
-Repository for Hilel Python Basic course. Lesssons, home tasks
+# Python Basic Course
+Repository for Hilel Python Basic course. Lesssons, home tasks, notes, materials etc.
