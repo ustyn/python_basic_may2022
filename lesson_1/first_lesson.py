@@ -16,9 +16,9 @@ print(f'3. My name is: {name}.  And my daughter`s name is {name2}. ')
 # We even can multiply string  like so:
 print('*' * 55)
 
-print(f'20 days in seconds is: {20 * 24 * 60 * 60}.')
-print(f'30 days in seconds is: {30 * 24 * 60 * 60}.')
-print(f'50 days in seconds is: {50 * 24 * 60 * 60}.')
+print(f'20 days in seconds are: {20 * 24 * 60 * 60} sec.')
+print(f'30 days in seconds are: {30 * 24 * 60 * 60} sec.')
+print(f'50 days in seconds are: {50 * 24 * 60 * 60} sec.')
 
 first_name = 'Olha'
 last_name = 'Kurkina'

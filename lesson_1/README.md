@@ -39,6 +39,7 @@ Usage of reserved words is forbidden and will cause a syntax error.
 > `import = 33` >>> `SyntaxError: invalid syntax`
 
 Reserved words are:
+
 ![img_1.png](img_1.png)
 
 Usage of built-in functions as variable names is not forbidden but HIGHLY not recommended.
@@ -47,3 +48,9 @@ It will not cause an error, but is a bad practice. You don`t want to be a bad pr
 > `sum = 10` >>> Absolutely ok syntax, no error, but now you can't use built-in function sum().
 
 > `len = 'some'` >>> Absolutely ok syntax, no error, but now you can't use built-in function len()
+
+## Good books to read:
+
+1. Марк Лутц - Изучаем Python  (5 издание, том 1,2)
+2. Марк Лутц - Программирование на Python 4-е издание Том 1, 2
+3. Марк Саммерфилд - Программирование на Python 3. Подробное руководство
