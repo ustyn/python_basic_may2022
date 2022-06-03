@@ -18,6 +18,10 @@ Choose Community edition,  it is quite enough, while Professional is only 30days
 NOTE: Installing on Windows DO NOT FORGET a checkbox "Add Python to PATH"
 ![img.png](img.png)
 
+WIndows 10 installation:
+![image](https://user-images.githubusercontent.com/105481239/171837035-ee8e83b5-acb0-41af-a291-57ecd36a4204.png)
+
+
 
 ## Set the Python interpreter in your Project to run python and use python console
 Go to PycHarm settings , select Project tab, press Python interpreter:
