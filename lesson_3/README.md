@@ -9,6 +9,7 @@ List comprehension may contain or may not contain additional condition.
 
 Watch and try some examples:
 1. Get odd numbers from some collection 
+
  ( comprehension with some condition) 
 ```python
 # some range from 10 to 100 with step 5
@@ -56,7 +57,8 @@ print(message)
 * Copy two `.py` files to a folder `lesson_3`. You need to import and use hardcoded values from `helper.py`.
 * Try to run `collections_lesson.py` and watch AssertionError.
 * The line like `assert condition , message` checks the condition and if it is False , raises an Error with message. Assertions are widely used in tests.
-* Your task to fix two cases marked **fixme:**, and make the file run up to the end without Assertion or other errors
+* Your task is to fix two cases marked **Fixme:**, and make the file run up to the end without Assertion or other errors
+* DO NOT correct assertions, correct the code to make Assertions valid.
 
 NOTE: Max points for this task is 90 and absolutely normal and OK.
 To get + 10 points more, create the correct cities list without None in a single line.
