@@ -17,7 +17,7 @@ cities = 'some collection?'     # Fixme: this collection should contain only uni
 
 # 4. Drop None from cities collection.
 #                             Because None is not the city name.
-#                             You may drop it here,
+#                             You may drop it here, at this step as a separate operation.
 #                             Or get additional 10 points,
 #                             if you find the way to make it in a single line in p3
 #                             by adding a condition.

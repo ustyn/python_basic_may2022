@@ -31,6 +31,14 @@ squares = [item**2 for item in range(20)]
 ```python
 _ = [print(method) for method in dir(list) if not method.startswith('__')]
 ```
+4. Generate list of random integers
+
+(we don't use the element from the collection at all, we just perform random.randint() several times)
+```python
+import random
+
+RANDOM_NUMBERS = [random.randint(1, 10000) for _ in range(1000)]
+```
 
 
 ## Ternary operator
