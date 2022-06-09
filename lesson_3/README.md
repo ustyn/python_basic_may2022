@@ -3,7 +3,7 @@
 The syntax of the list comrehension looks like:
 `[<expression> for <item> in <iterable> | if <condition>]`
 
-List comprehension may perform or may not perform operation with element.
+List comprehension may perform or may not perform operation with element (just taking element as is without conversions).
 
 List comprehension may contain or may not contain additional condition.
 
