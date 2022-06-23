@@ -29,7 +29,7 @@ def find_by_name(users, name):
     Find the oldest user among all users
     :param users: list of users to find
     :param name: name of the user to find
-    :return: dictionary with the oldest user
+    :return: the list of found users or empty list if no users were found
     """
     found = []
     # insert your code here to implement
