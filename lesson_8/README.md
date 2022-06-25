@@ -17,7 +17,7 @@ Let's do it with git
 
 this command will create a sub folder `python_basic_may2022` in the folder where you run this command.
 
-6. Add some changes - create `hello_world_<your_last_name>.py` in the `lesson_8` with some python content. Whatever, it doesn't matter much right now, it may be just
+6. Add some changes - create `hello_world_<your_last_name>.py` file in the `lesson_8` folder with some python content. Whatever, it doesn't matter much right now, it may be just
 ```python
 print('Hello world, this is Vasya! And this is my first commit to git')
 ```
