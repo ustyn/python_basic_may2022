@@ -25,3 +25,9 @@ print('Hello world, this is Vasya! And this is my first commit to git')
 ![img_2.png](img_2.png)
 
 ## That's it you are done!
+
+
+## Watch good videos about git
+https://youtu.be/QjT4HuF9gJs
+
+[https://youtu.be/au1Tb0tEe6I](https://youtube.com/playlist?list=PLlWXhlUMyooYE1nvMUMdorkFVvUgWClUY)
