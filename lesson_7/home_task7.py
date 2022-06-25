@@ -105,9 +105,9 @@ if __name__ == '__main__':
     found = find_by_name(json_users, name)
     print('I`ve found user by his name: \n', found)
     #
-    # serialize_with_pkl(data)
-    #
-    # example_with_some_file_to_append('Hello world')
-    # example_with_some_file_to_append('stop with it')
+    serialize_with_pkl(data)
+
+    example_with_some_file_to_append('Hello world')
+    example_with_some_file_to_append('stop with it')
 
     examples()
