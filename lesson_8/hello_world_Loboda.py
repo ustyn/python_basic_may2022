@@ -1,1 +1,1 @@
-print('Hello world.\nPython + Pycharm + Git = Amazing!' )
+print('Hello world.\nPython + Pycharm + Git = Amazing!')
