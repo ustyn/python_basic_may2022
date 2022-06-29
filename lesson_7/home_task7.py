@@ -103,7 +103,9 @@ if __name__ == '__main__':
     # 3. find users by name:
     name = 'some user name to find'
     found = find_by_name(json_users, name)
-    print('I`ve found user by his name: \n', found)
+    print(f'I`ve found {len(found)} user by his name: \n')
+    for f in found:
+        print(f)
     #
     serialize_with_pkl(data)
 
