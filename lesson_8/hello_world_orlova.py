@@ -1,1 +1,1 @@
-print('Hello, World! This is Katya. And this is my first commit to git')
+print('Hello, World! This is Katya and this is my first commit to git')
