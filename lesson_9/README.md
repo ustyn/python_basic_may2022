@@ -10,4 +10,27 @@
     * create your own branch with command `git checkout -b <your_last_name>`
     * commit `<your_last_name>.py` with some message, if not ready yet - say it in the message
     * push your changes, let me know to get quick response
-9. You may found something usefull in `helper.py`
+8. You may found something usefull in `helper.py`
+
+## Hints
+
+You may find very usefull such method of strings:
+
+```python
+>>> long_string = "Lorem ipsum dolor si amet ..."
+>>> word = "ipsum"
+>>> word in long_string
+True 
+```
+Operator `in` for strings returns True if the substring is present in longer string.
+
+This means that you may use it for searching among products' title or description with a given keyword.
+
+But be noticed, that `in` works very strict and matches only exact case-sensitive substrings .
+
+```python
+>>> long_string = "Lorem ipsum dolor si amet ..."
+>>> word2 = "lorem"
+word2 in long_string
+False
+```
