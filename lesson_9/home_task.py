@@ -25,10 +25,10 @@ def quadratic_equation(a, b, c):
     return x1, x2
 
 
-def is_admin(user):
+def is_admin(user: dict) -> bool:
     """
     Gets a user and return if the user is admin or not
-    User is a dict, the fields of admin status may be present in field :
+    User is a dict, the info about user admin status may be present in fields:
     'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'
     :param user: dictionary with user info
     :return: True or False

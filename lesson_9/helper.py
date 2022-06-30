@@ -1,16 +1,6 @@
 import json
 import random
-
-
-def is_admin(user):
-    """
-    Gets a user and return if the user is admin or not
-    User is a dict, the fields of admin status may be present in field :
-    'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'
-    :param user: dictionary with user info
-    :return: True or False
-    """
-    pass
+from lesson_9.home_task import is_admin, find_product
 
 
 def update_users_json():
@@ -58,16 +48,17 @@ def check_product_search():
     products = data.get('products')
 
     search_word = 'iphone'
-    found1 = search_products(products, search_word)
+    found1 = find_product(products, search_word)
     print(len(found1), found1)
-    found2 = search_products(products, 'glass')
+    found2 = find_product(products, 'glass')
     print(len(found2), found2)
-    found3 = search_products(products, 'shield')
+    found3 = find_product(products, 'shield')
     print(len(found3), found3)
-    found4 = search_products(products, 'bayraktar')
+    found4 = find_product(products, 'bayraktar')
     print(len(found4), found4)
 
 
 if __name__ == '__main__':
     # update_users_json()
     check_product_search()
+    check_admin()
