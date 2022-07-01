@@ -117,6 +117,7 @@ def write_user_to_file(users, search_name):
     # Fixme: we dont really need to read users here
     with open('../lesson_7/users.json') as js:
         data = json.load(js)
+
     pass
 
 
