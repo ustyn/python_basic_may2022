@@ -33,6 +33,7 @@ def quadratic_equation(a, b, c):
     # insert your code here
     D = b**2 - 4 * a * c
     if D < 0:
+        # TODO: can we make complex roots in this case instead of returning str "не існує"
         x1 = "не існує"
         x2 = "не існує"
     else:
@@ -54,6 +55,7 @@ def is_admin(user: dict) -> bool:
     :param user: dictionary with user info
     :return: True or False
     """
+    # Fixme: we dont really need to read users here
     with open('../lesson_7/users.json') as js:
         data = json.load(js)
 
@@ -89,6 +91,7 @@ def find_product(all_products, search_word):
     :param search_word: string to search in product name or product description, case-insensitive
     :return: list of products
     """
+    # Fixme: we dont really need to read prodyucts here
     with open('products.json') as js:
         data = json.load(js)
 
@@ -107,9 +110,11 @@ def write_user_to_file(users, search_name):
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
+    # Fixme: we dont really need to read users here
     with open('../lesson_7/users.json') as js:
         data = json.load(js)
     pass
+
 
 if __name__ == '__main__':
     filename = 'users.json'
@@ -128,8 +133,8 @@ if __name__ == '__main__':
     # 3
     print(is_admin)
     # 4
-    names =
-    domains =
+    names = []
+    domains = []
     print(generate_email)
     # 5
     print(find_product)
