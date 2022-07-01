@@ -2,7 +2,8 @@ import json
 import os
 import sys
 import math
-
+import random
+import string
 
 def distance(x1, y1, x2, y2):
     """
@@ -15,7 +16,7 @@ def distance(x1, y1, x2, y2):
     """
     AС = x2 - x1
     BC = y2 - y1
-    АB = (AС**2 + BC**2)**0.5
+    АB = (AС ** 2 + BC ** 2) ** 0.5
     return АB
 
 
@@ -31,17 +32,18 @@ def quadratic_equation(a, b, c):
     assert a != 0
     x1, x2 = None, None
     # insert your code here
-    D = b**2 - 4 * a * c
+    D = b ** 2 - 4 * a * c
     if D < 0:
+        # TODO: can we make complex roots in this case instead of returning str "не існує"
         x1 = "не існує"
         x2 = "не існує"
     else:
         if D == 0:
-            x1 = (-b + D**0.5) / 2 * a
-            x2 = (-b - D**0.5) / 2 * a
+            x1 = (-b + D ** 0.5) / 2 * a
+            x2 = (-b - D ** 0.5) / 2 * a
         else:
-            x1 = (-b + D**0.5) / 2 * a
-            x2 = (-b - D**0.5) / 2 * a
+            x1 = (-b + D ** 0.5) / 2 * a
+            x2 = (-b - D ** 0.5) / 2 * a
 
     return x1, x2
 
@@ -54,6 +56,7 @@ def is_admin(user: dict) -> bool:
     :param user: dictionary with user info
     :return: True or False
     """
+    # Fixme: we dont really need to read users here
     with open('../lesson_7/users.json') as js:
         data = json.load(js)
 
@@ -70,7 +73,6 @@ def generate_email(names, domains):
     фамилия.число_от_100_до_999@строка_букв_длинной_от_5_до_7_символов.домен
     фамилию и домен брать случайным образом из заданных списков переданных в функцию в виде параметров.
     Строку и число генерировать случайным образом.
-
     Пример использования функции:
     names = ["king", "miller", "kean"]
     domains = ["net", "com", "ua"]
@@ -79,6 +81,11 @@ def generate_email(names, domains):
     >>>miller.249@sgdyyur.com
     """
     email = ''
+    from random import randint
+    random_number = str(randint(100, 999))
+    allowedChars = string.ascii_letters
+    random_str = ''.join(random.choice(allowedChars) for _ in range(5, 7))
+    email = random.choice(names) + "." + random_number + random_str + "." + random.choice(domains)
     return email
 
 
@@ -89,6 +96,7 @@ def find_product(all_products, search_word):
     :param search_word: string to search in product name or product description, case-insensitive
     :return: list of products
     """
+    # Fixme: we dont really need to read prodyucts here
     with open('products.json') as js:
         data = json.load(js)
 
@@ -101,15 +109,16 @@ def write_user_to_file(users, search_name):
     Write a function, that takes a user_name or last name find the user and write the result
     to a file <FirstName_LastName>.txt
     The user data inside should be written in a pretty format:
-
     Key     :       Value
     :param users: iterable of users
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
+    # Fixme: we dont really need to read users here
     with open('../lesson_7/users.json') as js:
         data = json.load(js)
     pass
+
 
 if __name__ == '__main__':
     filename = 'users.json'
@@ -128,9 +137,9 @@ if __name__ == '__main__':
     # 3
     print(is_admin)
     # 4
-    names =
-    domains =
-    print(generate_email)
+    names = ['Afan', 'Andre', 'Grey', 'Fox']
+    domains = ["com", "ua", "ru", "net"]
+    print('Your email:', generate_email)
     # 5
     print(find_product)
     # 6
