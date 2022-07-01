@@ -59,6 +59,7 @@ def is_admin(user: dict) -> bool:
 
     is_admin = False
     # insert your code here
+
     return is_admin
 
 
@@ -127,6 +128,8 @@ if __name__ == '__main__':
     # 3
     print(is_admin)
     # 4
+    names =
+    domains =
     print(generate_email)
     # 5
     print(find_product)
