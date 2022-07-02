@@ -112,8 +112,8 @@ if __name__ == '__main__':
     # dist_point = distance(x1=10, y1=20, x2=30, y2=40)                   #1
     # print(dist_point)
 
-    # QUADRATIC = quadratic_equation(a=2, b=5, c=3)                       #2
-    # print(QUADRATIC)
+    # QUADRATIC_EQ = quadratic_equation(a=2, b=5, c=3)                       #2
+    # print(QUADRATIC_EQ)
 
     with open('../lesson_7/users.json') as js:                            #3
         data = json.load(js)
