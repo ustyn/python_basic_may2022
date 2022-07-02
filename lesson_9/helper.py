@@ -1,6 +1,8 @@
 import json
 import random
 from lesson_9.home_task import is_admin, find_product
+from lesson_9.home_task import write_user_to_file
+# from lesson_9.solved import is_admin
 
 
 def update_users_json():
@@ -33,6 +35,9 @@ def check_admin():
     users = data.get('users')
     for user in users:
         print(f'user {user.get("firstName")} is admin: {is_admin(user)}')
+    fake_user = {"username": "Adam", "super_user": True}
+    is_admin_user = is_admin(fake_user)
+    print(f' Another User:  {is_admin_user}')
 
 
 def search_products(products, key):
@@ -56,9 +61,25 @@ def check_product_search():
     print(len(found3), found3)
     found4 = find_product(products, 'bayraktar')
     print(len(found4), found4)
+    found5 = find_product(products, '')
+    print(len(found4), found4)
+
+
+def check_file_write():
+    with open('../lesson_7/users.json') as js:
+        data = json.load(js)
+
+    users = data.get('users')
+    user_found = write_user_to_file(users, search_name='Eleanora')
+    print(user_found)       # ELeanora_Shultz.txt
+
+    user_not_found = write_user_to_file(users, search_name='rjfgskjfghk')
+    print(user_not_found)       # ''
+
 
 
 if __name__ == '__main__':
     # update_users_json()
     check_product_search()
     check_admin()
+    check_file_write()

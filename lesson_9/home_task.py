@@ -65,6 +65,7 @@ def find_product(all_products, search_word):
     :return: list of products
     """
     found = []
+    # insert your code here
     return found
 
 
@@ -79,4 +80,14 @@ def write_user_to_file(users, search_name):
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
+    # 1. for user in users:
+    #   check user firstName or user lastName
+    # 2. if user was found:
+    # create filename
+    # and create file:
+    # for k, v in user.items():
+    #  write to file
+    # return filename
+    # 3. user was not found:
+    # return ''
     pass
