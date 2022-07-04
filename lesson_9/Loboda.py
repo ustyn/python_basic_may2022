@@ -97,11 +97,10 @@ def find_product(all_products, search_word):
     search_word = search_word.lower()
     found = []
     for item in all_products:
-        for k in item.values():
-            if type(k) == type(search_word):
-                k = k.lower()
-                if search_word in k:
-                    found.append(item)
+        name_product = (item.get('title')).lower()
+        descr_product = (item.get('description')).lower()
+        if search_word in name_product or search_word in descr_product:
+            found.append(item)
     return found
 
 
@@ -153,7 +152,7 @@ if __name__ == '__main__':
     # with open('products.json') as js:                                          #5
     #     data = json.load(js)
     # products = data.get('products')
-    # search_word = 'Perfume'
+    # search_word = 'watch'
     # found = find_product(products, search_word)
     # print(len(found), found)
 
