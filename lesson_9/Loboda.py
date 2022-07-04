@@ -108,7 +108,7 @@ def find_product(all_products, search_word):
 def write_user_to_file(users, search_name):
     """
     Write a function, that takes a user_name or last name find the user and write the result
-    to a file <FirstName_LastName>.txt
+     to a file <FirstName_LastName>.txt
     The user data inside should be written in a pretty format:
 
     Key     :       Value
