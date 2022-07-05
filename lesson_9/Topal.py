@@ -34,9 +34,8 @@ def quadratic_equation(a, b, c):
     # insert your code here
     D = b ** 2 - 4 * a * c
     if D < 0:
-        # TODO: can we make complex roots in this case instead of returning str "не існує"
         x1 = "не існує"
-        x2 = "не існує"
+        x2 = "не існуе"
     else:
         if D == 0:
             x1 = (-b + D ** 0.5) / 2 * a
@@ -56,12 +55,13 @@ def is_admin(user: dict) -> bool:
     :param user: dictionary with user info
     :return: True or False
     """
-    # Fixme: we dont really need to read users here
-    with open('../lesson_7/users.json') as js:
-        data = json.load(js)
-
     is_admin = False
     # insert your code here
+    names_admin = ['is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root']
+    for i in user:
+        for a in names_admin:
+            if i == a:
+                is_admin = user.get(i)
 
     return is_admin
 
@@ -84,7 +84,7 @@ def generate_email(names, domains):
     from random import randint
     random_number = str(randint(100, 999))
     allowedChars = string.ascii_letters
-    random_str = ''.join(random.choice(allowedChars) for _ in range(5, 7))
+    random_str = ''.join(random.choice(allowedChars).lower() for _ in range(1, 8))
     email = random.choice(names) + "." + random_number + random_str + "." + random.choice(domains)
     return email
 
@@ -96,11 +96,13 @@ def find_product(all_products, search_word):
     :param search_word: string to search in product name or product description, case-insensitive
     :return: list of products
     """
-    # Fixme: we dont really need to read prodyucts here
-    with open('products.json') as js:
-        data = json.load(js)
 
     found = []
+    for item in all_products:
+        products_name = (item.get('title'))
+        description_product = (item.get('description'))
+        if search_word in products_name or description_product:
+            found.append(item)
     return found
 
 
@@ -114,9 +116,17 @@ def write_user_to_file(users, search_name):
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
-    # Fixme: we dont really need to read users here
-    with open('../lesson_7/users.json') as js:
-        data = json.load(js)
+    found = ''
+    search_name = search_name.lower()
+    for item in users:
+        Firstname = (item.get('firstName')).lower()
+        Lastname = (item.get('lastName')).lower()
+        if search_name == Firstname or search_name == Lastname:
+            with open(f'{Firstname.title()}_{Lastname.title()}.txt', 'w', encoding="utf-8") as file_txt:
+                for k, v in item.items():
+                    file_txt.write(f'{k}:{v}')
+            found += f'{Firstname.title()}_{Lastname.title()}.txt ; '
+    return found
 
     pass
 
@@ -125,23 +135,45 @@ if __name__ == '__main__':
     filename = 'users.json'
 
     # 1
-    х1 = 3
-    х2 = 5
-    y1 = 1
-    y2 = 1
-    print('distance between points', distance)
+    print("Функция 1")
+    # х1 = 3
+    # х2 = 5
+    # y1 = 1
+    # y2 = 1
+    distance_new = distance(x1=3, x2=5, y1=1, y2=1)
+    print('distance between points = ', distance_new)
     # 2
-    a = 1
-    b = 2
-    c = 3
-    print('square equation roots', quadratic_equation)
+    print("Функция 2")
+    # a = 1
+    # b = 2
+    # c = 3
+    quadratic_equation_new = quadratic_equation(a=2, b=15, c=3)
+    print('Корни квадратного уравнения:', quadratic_equation_new)
     # 3
-    print(is_admin)
+    print("Функция 3")
+    with open('../lesson_7/users.json') as js:
+        data = json.load(js)
+    users = data.get('users')
+    user = random.choice(users)
+    print(f'Пользователь {user.get("firstName")} админ = {is_admin(user)}')
     # 4
+    print("Функция 4")
     names = ['Afan', 'Andre', 'Grey', 'Fox']
     domains = ["com", "ua", "ru", "net"]
-    print('Your email:', generate_email)
+    generate_email_new = generate_email(names, domains)
+    print('Ваш адрес:', generate_email_new)
     # 5
-    print(find_product)
+    print("Функция 5")
+    with open('products.json') as js:
+        data = json.load(js)
+    products = data.get('products')
+    search_word = 'watch'
+    found_product_new = find_product(products, search_word)
+    print(found_product_new)
     # 6
-    print("Username is :", write_user_to_file)
+    print("Функция 6")
+    with open('../lesson_7/users.json') as js:
+        data = json.load(js)
+    users = data.get('users')
+    user_found = write_user_to_file(users, search_name='Terry')
+    print("Username is :", user_found)
