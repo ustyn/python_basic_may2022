@@ -34,8 +34,8 @@ def quadratic_equation(a, b, c):
     # insert your code here
     D = b ** 2 - 4 * a * c
     if D < 0:
-        x1 = "не існує"
-        x2 = "не існуе"
+        x1 = None
+        x2 = None
     else:
         if D == 0:
             x1 = (-b + D ** 0.5) / 2 * a
@@ -104,7 +104,7 @@ def find_product(all_products, search_word):
     for item in all_products:
         products_name = (item.get('title'))
         description_product = (item.get('description'))
-        if search_word in products_name or description_product:
+        if search_word.lower() in products_name.lower() or search_word.lower() in description_product.lower():
             found.append(item)
     return found
 
