@@ -9,17 +9,45 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
         self.info = info
-        self.password = self.generate_password()
+        # protected attribute with single underscore
+        self._password = self.generate_password()       # _protected
+        # __private attribute with double underscore
+        self.__mac_address = info.get('macAddress') if info is not None else None
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
+
+    # decorator property converts a method to an attribute
+    # what the difference between attribute and method of the class?
+    # you call attribute without braces: user.first_name
+    # you call method with braces(): user.print_me()
+    # so method is like a function call
+    # With property decorator we can use our "method" as an attribute without ():
+    # user.mac_address
+    # Property can not be assigned, so this will generate an error:
+    # user.mac_address = 'another mac address'
+    @property
+    def mac_address(self):
+        return self.__mac_address
+
+    @property
+    def password(self):
+        return self._password
+
+    # @password.setter
+    def set_password(self, psw):
+        self._password = psw
 
     def print_me(self):
         print(f'I am {self.__str__()}.')
 
+    @property
     def has_admin_role(self):
-        # todo: improve this method according to lesson9 home task - read values of all possible "admin"-keys
         if self.info is not None and isinstance(self.info, dict):
-            return self.info.get('superuser', False)
+            key = list(set(self.info.keys()).intersection(
+                {'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'})
+            )
+            if key:
+                return user.get(key[0], False)
         return False
 
     @staticmethod
@@ -73,20 +101,23 @@ if __name__ == '__main__':
 
         user_instance.print_me()      # print
 
-        if user_instance.has_admin_role():
+        if user_instance.has_admin_role:        # since has_admin_role is a property, we can use it without braces
             print(f'User {user_instance.last_name}  is admin')
             admins.append(user_instance)
+        print('user psw: ', user_instance.password)
+        print('user macaddr: ', user_instance.mac_address)
 
     print(f'I found {len(admins)}  admins among users.')
     for admin in admins:
         print(admin)
-        admin.password = admin.generate_password(15)
+        admin.set_password(admin.generate_password(15))
         admin.updated_at = datetime.datetime.now()
         print('New password: ', admin.password)
 
         # possible but bad practice - better define all attribute inside the class, but not outside
         # admin.new_attribute = 'something'
 
+    # we can call the staticmethod by class name, without an instance of this class
     random_psw = User.generate_password(7)
     print(random_psw)
 
@@ -100,4 +131,13 @@ if __name__ == '__main__':
     address = user_instance['address']
     print(address)
 
-    # print('firstname: ', User.first_name)     # WARNING !!! ERROR :  AttributeError
+    # property demo
+    try:
+        print('Admin mac address: ', admin1.mac_address)
+        print('!!Trying to set property will raise an error!!')
+        admin1.mac_address = 'something'
+    except Exception as e:
+        print('UPS, an error:')
+        print(e)
+    print('Admin mac address: ', admin1.mac_address)
+    print('Now you see that property can not be set this way, mac address is still the same')

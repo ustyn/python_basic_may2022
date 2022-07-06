@@ -7,7 +7,7 @@ def distance(x1, y1, x2, y2):
     :param y2:
     :return:
     """
-    return 0
+    return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 
 def quadratic_equation(a, b, c):
@@ -67,6 +67,22 @@ def find_product(all_products, search_word):
     found = []
     # insert your code here
     return found
+
+
+def find_product_v2(all_products, search_word):
+    """
+    Create a function to search among products and find by keywords
+    :param all_products: iterable of some products
+    :param search_word: string to search in product name or product description, case-insensitive
+    :return: tuple : (True/False, list of found) of products
+    """
+    found = []
+    for product in all_products:
+        descr = product.get('description', '').lower()
+        title = product.get('title', '').lower()
+        if search_word.lower() in descr or search_word.lower() in title:
+            found.append(product)
+    return len(found), found
 
 
 def write_user_to_file(users, search_name):
