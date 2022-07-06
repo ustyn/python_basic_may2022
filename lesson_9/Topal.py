@@ -55,6 +55,9 @@ def is_admin(user: dict) -> bool:
     :param user: dictionary with user info
     :return: True or False
     """
+    with open('../lesson_7/users.json') as js:
+        data = json.load(js)
+
     is_admin = False
     # insert your code here
     names_admin = ['is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root']
@@ -111,6 +114,7 @@ def write_user_to_file(users, search_name):
     Write a function, that takes a user_name or last name find the user and write the result
     to a file <FirstName_LastName>.txt
     The user data inside should be written in a pretty format:
+
     Key     :       Value
     :param users: iterable of users
     :param search_name: First or Last name of the user to search, case insensitive
@@ -129,7 +133,6 @@ def write_user_to_file(users, search_name):
     return found
 
     pass
-
 
 if __name__ == '__main__':
     filename = 'users.json'
