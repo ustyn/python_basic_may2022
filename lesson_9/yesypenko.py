@@ -134,16 +134,17 @@ def write_user_to_file(users, search_name):
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
-    # 1. for user in users:
-    #   check user firstName or user lastName
-    # 2. if user was found:
-    # create filename
-    # and create file:
-    # for k, v in user.items():
-    #  write to file
-    # return filename
-    # 3. user was not found:
-    # return ''
+    found = []
+    new_filename = ''
+    for user in users:
+        if search_name == user['firstName'] or search_name == user['lastName']:
+            found.append(user)
+            f_name = user['firstName']
+            l_name = user['lastName']
+            new_filename = f'{f_name}_{l_name}'
+            return f'File "{new_filename}.txt" was created'
+        else:
+            return new_filename
     pass
 
 
@@ -159,5 +160,5 @@ if __name__ == '__main__':
         data = json.load(js)
     products = data.get('products')
     search = 'Apple'
-    task5 = find_product(products, search)
-    print(task5)
+    staff = find_product(products, search)
+    print(staff)
