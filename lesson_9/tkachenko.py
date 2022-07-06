@@ -35,12 +35,12 @@ def quadratic_equation(a, b, c):
     d = b ** 2 - 4 * a * c
 
     if d < 0:
-        return 'An equation with a negative discriminant has no roots.'
+        return None
 
     if d > 0:
         x1 = ((-b - sqrt(d)) / (2 * a))
         x2 = ((-b + sqrt(d)) / (2 * a))
-        return '"x" in this equation have two values: ', x1, x2
+        return x1, x2
 
 # done
 def is_admin(user: dict) -> bool:
@@ -115,12 +115,7 @@ def find_product(all_products, search_word):
         elif search_word1 in str.lower(item['brand']):
             found.append(item)
 
-        if len(found) == 0:
-            found = 'Sorry, i can`t find anything :( '
-
-        # if t_or_f == True:
-        #     found.append(item)
-    return f'I searched for a product by the word "{search_word}" and ... {found}'
+    return found
 
 
 def write_user_to_file(users, search_name):
@@ -204,7 +199,7 @@ if __name__ == '__main__':
     products = data.get('products')
     search = 'Apple'
     task5 = find_product(products, search)
-    print(task5)
+    print(f'I searched for a product by the word "{search}" and ... {task5}')
 
     print('')
     print('*' * 25)
