@@ -34,10 +34,9 @@ def quadratic_equation(a, b, c):
         x1 = ((-b) + math.sqrt(D))/(2*a)
         x2 = ((-b) - math.sqrt(D))/(2*a)
     elif D == 0:
-        x1 = (-b)/(2*a)
-        x2 = 'one root'
+        x1 = x2 = (-b)/(2*a)
     else:
-        x1 = "no roots"
+        x1 = None
         x2 = None
     return x1, x2
 
@@ -130,17 +129,17 @@ def write_user_to_file(users, search_name):
 if __name__ == '__main__':
     print('Ok, started!')
 
-    # dist_point = distance(x1=10, y1=20, x2=30, y2=40)                       #1
+    # dist_point = distance(x1=10, y1=20, x2=30, y2=40)                          #1
     # print(dist_point)
 
     # QUADRATIC_EQ = quadratic_equation(a=2, b=5, c=-3)                        #2
     # print(QUADRATIC_EQ)
 
-    # with open('../lesson_7/users.json') as js:                              #3
+    # with open('../lesson_7/users.json') as js:                               #3
     #     data = json.load(js)
     # users = data.get('users')
-    # user = random.choice(users)
-    # print(f'user {user.get("firstName")} is admin: {is_admin(user)}')
+    # for user in users:
+    #   print(f'user {user.get("firstName")} is admin: {is_admin(user)}')
 
 
     # names = ['jonhns', 'darko', 'stiller', 'wayne', 'adams']                 #4
