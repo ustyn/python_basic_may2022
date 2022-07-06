@@ -155,7 +155,7 @@ def write_user_to_file(users, search_name):
 if __name__ == '__main__':
 
     task1 = distance(1.5, 3, 2.2, 5)
-    print('The distance between points is calculated by the formula\033[1m AB = √((xb - xa)2 + (yb - ya)2) \033[0m')
+    print('The distance between  points is calculated by the formula\033[1m AB = √((xb - xa)2 + (yb - ya)2) \033[0m')
     print('Distance =', task1)
 
     print('')
