@@ -2,6 +2,7 @@ import json
 import random
 import string
 
+
 def distance(x1, y1, x2, y2):
     """
     Function get coordinates of two points and returns a distance between them
@@ -44,14 +45,14 @@ def is_admin(user: dict) -> bool:
     :param user: dictionary with user info
     :return: True or False
     """
-    is_admin = False
+    user_is_admin = False
     users = set(user.keys())
     keys = users.intersection({'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'})
     key = list(keys)
     if key:
         print(key)
         return user.get(key[0], False)
-    return is_admin
+    return user_is_admin
 
 
 def generate_email(names, domains):
@@ -67,7 +68,7 @@ def generate_email(names, domains):
     domains = ["net", "com", "ua"]
     e_mail = create_email(domains, names)
     print(e_mail)
-    >>>miller.249@sgdyyur.com
+    miller.249@sgdyyur.com
     """
     rand_string = ''
     for i in range(random.randint(5, 7)):
@@ -107,17 +108,18 @@ def write_user_to_file(users, search_name):
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
-    # 1. for user in users:
-    #   check user firstName or user lastName
-    # 2. if user was found:
-    # create filename
-    # and create file:
-    # for k, v in user.items():
-    #  write to file
-    # return filename
-    # 3. user was not found:
-    # return ''
-    pass
+    filename = 'User not found'
+    for user in users:
+        if search_name.lower() == user['firstName'].lower() or search_name.lower() == user['lastName'].lower():
+            first_name = user['firstName']
+            last_name = user['lastName']
+            filename = open(f'{first_name.title()}_{last_name.title()}.txt', "w")
+            filename.write(f"{first_name.title()}_{last_name.title()}")
+            filename.close()
+            return f'File "{first_name.title()}_{last_name.title()}.txt" was created'
+        else:
+            return filename
+
 
 if __name__ == '__main__':
     print('Start')
@@ -155,3 +157,9 @@ if __name__ == '__main__':
     #     print(item)
 
     # Task 6
+    # with open('../lesson_7/users.json') as js:
+    #     data = json.load(js)
+    # users = data.get('users')
+    #
+    # txt_file = write_user_to_file(users, 'MEdhuRst')
+    # print(txt_file)
