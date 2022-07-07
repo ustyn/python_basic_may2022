@@ -25,12 +25,11 @@ def quadratic_equation(a, b, c):
     :return: square equation roots
     """
     assert a != 0
-    x1, x2 = None, None
     discr = b**2 - 4*a*c
     if discr < 0:
-        x1, x2 = 'No', 'roots'
+        x1, x2 = None, None
     elif discr == 0:
-        x1, x2 = 'The only root is', -b / (2 * a)
+        x1, x2 = -b / (2 * a), -b / (2 * a)
     else:
         x1 = (-b + discr ** 0.5) / (2 * a)
         x2 = (-b - discr ** 0.5) / (2 * a)
@@ -46,11 +45,12 @@ def is_admin(user: dict) -> bool:
     :return: True or False
     """
     is_admin = False
-    admin_sign = ['is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root']
-    for name in user:
-        for sign in admin_sign:
-            if name == sign:
-                is_admin = user.get(name)
+    users = set(user.keys())
+    keys = users.intersection({'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'})
+    key = list(keys)
+    if key:
+        print(key)
+        return user.get(key[0], False)
     return is_admin
 
 
@@ -123,30 +123,35 @@ if __name__ == '__main__':
     print('Start')
 
     # Task 1
-    distance_between_points = distance(12, 211, 11, 64)
-    print(distance_between_points)
+    # distance_between_points = distance(12, 211, 11, 64)
+    # print(distance_between_points)
 
     # Task 2
-    quadratic_equation = quadratic_equation(2, 5, -3)
-    print(quadratic_equation)
+    # quadratic_equation = quadratic_equation(1, 0, 0)
+    # print(quadratic_equation)
 
     # Task 3
+    # with open('../lesson_7/users.json') as jsonfile:
+    #     data = json.load(jsonfile)
+    # users = data.get('users')
+    # for user in users:
+    #   print(f'user {user.get("firstName")} is admin: {is_admin(user)}')
 
     # Task 4
-    names = ['andy', 'kali', 'greg', 'fred', 'ben', 'sofie', 'volly', 'metty']
-    domains = ['eu', 'us', 'net', 'org', 'com', 'ua', 'ge', 'kz']
-    e_mail = generate_email(names, domains)
-    print(e_mail)
+    # names = ['andy', 'kali', 'greg', 'fred', 'ben', 'sofie', 'volly', 'metty']
+    # domains = ['eu', 'us', 'net', 'org', 'com', 'ua', 'ge', 'kz']
+    # e_mail = generate_email(names, domains)
+    # print(e_mail)
 
     # Task 5
-    json_file = 'products.json'
-    search_word = 'phone'
-
-    with open(json_file) as js:
-        data = json.load(js)
-    products = data.get('products')
-    found = find_product(products, search_word)
-    for item in found:
-        print(item)
+    # json_file = 'products.json'
+    # search_word = 'phone'
+    #
+    # with open(json_file) as js:
+    #     data = json.load(js)
+    # products = data.get('products')
+    # found = find_product(products, search_word)
+    # for item in found:
+    #     print(item)
 
     # Task 6
