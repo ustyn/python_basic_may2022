@@ -1,9 +1,10 @@
 import json
 import random
-from lesson_9.home_task import is_admin, find_product, find_product_v2
-from lesson_9.home_task import write_user_to_file
-from lesson_9.home_task import distance
-from lesson_9.solved import is_admin, quadratic_equation
+from lesson_9.home_task import find_product_v2
+from lesson_9.Loboda import is_admin, find_product
+from lesson_9.Loboda import write_user_to_file
+from lesson_9.Loboda import distance
+from lesson_9.Loboda import quadratic_equation
 
 
 def update_users_json():
@@ -118,6 +119,6 @@ if __name__ == '__main__':
     # update_users_json()
     check_product_search()
     check_admin()
-    # check_distance()
-    # check_file_write()
+    check_distance()
+    check_file_write()
     check_quadratic()
