@@ -1,4 +1,6 @@
 import json
+import string
+import random
 
 
 def distance(x1, y1, x2, y2):
@@ -39,29 +41,6 @@ def quadratic_equation(a, b, c):
     return x1, x2
 
 
-def update_users_json():
-    """
-    Helper function to randomly make some of our users admins
-    :return:
-    """
-    with open('../lesson_7/users.json') as js:
-        data = json.load(js)
-
-    users = data.get('users')
-    counter = 0
-    for item in users:
-        is_admin = random.random() > 0.8
-        if is_admin:
-            key = random.choice(['is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'])
-            item[key] = True if random.random() > 0.2 else False
-            print(f'Adding admin key {key} for user {item.get("firstName")}')
-            counter += 1
-    data['users'] = users
-    with open('../lesson_7/users.json', 'w') as js_write:
-        json.dump(data, js_write)
-    print(f'Updated {counter} users')
-
-
 def is_admin(user: dict) -> bool:
     """
     Gets a user and return if the user is admin or not
@@ -79,6 +58,15 @@ def is_admin(user: dict) -> bool:
         is_admin = False
     return is_admin
 
+#Teacher's code:
+    #key = list(set(user.keys()).intersection({'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'}))
+    #intersection = пересічення
+    # if key:  #means list key is not empty
+    #     print(key)
+    #     return user.get(key[0], False)
+    # return False
+
+
 def generate_email(names, domains):
     """
     Даны списки names и domains (создать самостоятельно).
@@ -95,8 +83,29 @@ def generate_email(names, domains):
     >>>miller.249@sgdyyur.com
     """
     email = ''
-
+    random_letters = ''
+    names = ['Jenny', 'Mike', 'Alise', 'Daniel', 'Mary', 'Jason']
+    domains = ['com', 'net', 'ua', 'uk', 'pl']
+    for i in range(random.randint(5, 7)):
+        random_letters += random.choice(string.ascii_lowercase)
+    email = f'{random.choice(names)}.{str(random.randint(100, 999))}@{random_letters}.{random.choice(domains)}'
     return email
+
+
+def find_product(all_products, search_word):
+    """
+    Create a function to search among products and find by keywords
+    :param all_products: iterable of some products
+    :param search_word: string to search in product name or product description, case-insensitive
+    :return: list of products
+    """
+    found = []
+    for product in all_products:
+        description = product.get('description')
+        title = product.get('title')
+        if search_word.lower() in description.lower() or search_word.lower() in title.lower():
+            found.append(product)
+    return found
 
 if __name__ == '__main__':
 
