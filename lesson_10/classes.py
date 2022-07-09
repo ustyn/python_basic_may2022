@@ -200,4 +200,3 @@ if __name__ == '__main__':
     print(f'Busket total amount: ${customer.total_value}')
 
     print('Customer mac: ', customer.mac_address)
-
