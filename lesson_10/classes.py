@@ -2,9 +2,19 @@ import datetime
 import json
 import random
 import string
+import os
+from lesson_9.Topal import find_product
 
 
-class User:
+class BaseUser:
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def generate_password(self, *args, **kwargs):
+        pass
+
+
+class User(BaseUser):
     def __init__(self, first_name, last_name, info=None):
         self.first_name = first_name
         self.last_name = last_name
@@ -47,7 +57,7 @@ class User:
                 {'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'})
             )
             if key:
-                return user.get(key[0], False)
+                return self.get(key[0], False)
         return False
 
     @staticmethod
@@ -76,7 +86,30 @@ class User:
         return self.info.get(item)
 
 
-if __name__ == '__main__':
+class Customer(User):
+    def __init__(self, first_name, last_name, info=None):
+        print('Creating customer... ')
+        super().__init__(first_name, last_name, info=info)
+        self.registered_at = datetime.datetime.now()
+        self.basket = list()
+
+    def perform_purchase(self, item):
+        self.basket.append(item)
+
+    @property
+    def total_value(self):
+        return sum([i.get('price', 0) for i in self.basket])
+
+    @property
+    def mac_address(self):
+        print(f'Customer {self.first_name} requests his mac_addr')
+        return super().mac_address
+
+    def set_mac(self, mac_address):
+        self.__mac_address = mac_address
+
+
+def main():
     u1 = User('John', 'Doe')
     u1.print_me()
 
@@ -87,7 +120,7 @@ if __name__ == '__main__':
     print(u3.first_name)
     # u2.get_me()
 
-    with open('../lesson_7/users.json') as js:
+    with open('lesson_7/users.json') as js:
         data = json.load(js)
 
     users = data.get('users')
@@ -99,9 +132,9 @@ if __name__ == '__main__':
         lastname = user.get('lastName')
         user_instance = User(firstname, lastname, info=user)
 
-        user_instance.print_me()      # print
+        user_instance.print_me()  # print
 
-        if user_instance.has_admin_role:        # since has_admin_role is a property, we can use it without braces
+        if user_instance.has_admin_role:  # since has_admin_role is a property, we can use it without braces
             print(f'User {user_instance.last_name}  is admin')
             admins.append(user_instance)
         print('user psw: ', user_instance.password)
@@ -141,3 +174,30 @@ if __name__ == '__main__':
         print(e)
     print('Admin mac address: ', admin1.mac_address)
     print('Now you see that property can not be set this way, mac address is still the same')
+
+
+if __name__ == '__main__':
+    # main()
+
+    customer = Customer('Johnny', 'Depp', {'ex_wife': "Amber  Heardt",
+                                           'macAddress': 'JJ:12:DD:A2'})
+    customer.print_me()
+
+    customer.perform_purchase({})
+
+    with open('lesson_9/products.json') as js:
+        data = json.load(js)
+    products = data.get('products')
+    search_word = 'watch'
+    found_product = find_product(products, search_word)
+    if found_product:
+        customer.perform_purchase(found_product[0])
+
+    found_iphone = find_product(products, 'iphone')
+    if found_product:
+        customer.perform_purchase(found_iphone[0])
+
+    print(f'Busket total amount: ${customer.total_value}')
+
+    print('Customer mac: ', customer.mac_address)
+
