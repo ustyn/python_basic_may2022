@@ -129,22 +129,38 @@ def write_user_to_file(users, search_name):
     :param search_name: First or Last name of the user to search, case insensitive
     :return:  str file_name of the user if found or empty string if not
     """
+    # found = []
+    # new_filename = ''
+    #
+    # for user in users:
+    #     if search_name == user['firstName'] or search_name == user['lastName']:
+    #         found.append(user)
+    #         f_name = user['firstName']
+    #         l_name = user['lastName']
+    #         new_filename = f'{f_name}_{l_name}'
+    #         return f'File "{new_filename}.txt" was created'
+    #     else:
+    #         return new_filename
+    #
+    # with open(f'../lesson_9/{new_filename}.txt', 'w') as txt:
+    #     for k, v in found[0].items():
+    #         txt.write('{}: {}\n'.format(k, v))
+
     found = []
     new_filename = ''
 
     for user in users:
-        if search_name == user['firstName'] or search_name == user['lastName']:
+        f_name = user['firstName']
+        l_name = user['lastName']
+        if search_name == f_name or search_name == l_name:
+            with open(f'../lesson_9/{f_name}_{l_name}.txt', 'w') as txt:
+                for k, v in user.items():
+                    txt.write(f'{k}:{v} \n')
+            new_filename += f'{f_name}_{l_name}.txt\n'
             found.append(user)
-            f_name = user['firstName']
-            l_name = user['lastName']
-            new_filename = f'{f_name}_{l_name}'
-            return f'File "{new_filename}.txt" was created'
-        else:
-            return new_filename
 
-    with open(f'../lesson_9/{new_filename}.txt', 'w') as txt:
-        for k, v in found[0].items():
-            txt.write('{}: {}\n'.format(k, v))
+    return new_filename
+
 
 
 if __name__ == '__main__':
