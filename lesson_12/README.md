@@ -6,7 +6,7 @@ Any serious application written in Python requires additional packages.
 
 Python has [many thousands](https://pypi.org/) of additional packages already written that you can use to build any types of applications or perform tasks.
 
-Parsing sites, connecting to DataBases, mathematics calculations, data analisys, natural language processing, audio operations, using Cloud services or 3rd party APIs or even downloading YouTube Videos - there are different packages already written and ready to use.  
+Parsing sites, connecting to DataBases, mathematics calculations, data analisys, natural language processing, audio operations or image processing, using Cloud services or 3rd party APIs or even downloading YouTube Videos - there are different packages already written and ready to use.  
 
 That's one of the reasons why Python is so popular and so powerfull.
 
@@ -26,7 +26,7 @@ for example to install [requests](https://pypi.org/project/requests/) run
 Large applications may have hundreds of packages to be installed , and it is boring to install them one by one.
 You can keep all names in `requirements.txt` file and then install them just with one command:
 
-`pip install -r requirements.txt'
+`pip install -r requirements.txt`
 
 This file is usually located on the top level folder of the project.
 
