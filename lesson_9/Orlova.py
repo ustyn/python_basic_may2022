@@ -49,14 +49,14 @@ def is_admin(user: dict) -> bool:
     :param user: dictionary with user info
     :return: True or False
     """
-    is_admin = False
+    admin = False
     # insert your code here
-    if user.get('is_admin') == True or user.get('admin') == True or user.get('super_user') == True or user.get(
-            'superuser') == True or user.get('is_root') == True or user.get('root') == True:
-        is_admin = True
+    if user.get('is_admin') is True or user.get('admin') is True or user.get('super_user') is True or user.get(
+            'superuser') is True or user.get('is_root') is True or user.get('root') is True:
+        admin = True
     else:
-        is_admin = False
-    return is_admin
+        admin = False
+    return admin
 
 #Teacher's code:
     #key = list(set(user.keys()).intersection({'is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'}))
@@ -84,8 +84,6 @@ def generate_email(names, domains):
     """
     email = ''
     random_letters = ''
-    names = ['Jenny', 'Mike', 'Alise', 'Daniel', 'Mary', 'Jason']
-    domains = ['com', 'net', 'ua', 'uk', 'pl']
     for i in range(random.randint(5, 7)):
         random_letters += random.choice(string.ascii_lowercase)
     email = f'{random.choice(names)}.{str(random.randint(100, 999))}@{random_letters}.{random.choice(domains)}'
@@ -107,6 +105,50 @@ def find_product(all_products, search_word):
             found.append(product)
     return found
 
+
+def write_user_to_file(users, search_name):
+    """
+    Write a function, that takes a user_name or last name find the user and write the result
+    to a file <FirstName_LastName>.txt
+    The user data inside should be written in a pretty format:
+
+    Key     :       Value
+    :param users: iterable of users
+    :param search_name: First or Last name of the user to search, case insensitive
+    :return:  str file_name of the user if found or empty string if not
+    """
+    for user in users:
+        if search_name in user.get('firstName') or search_name in user.get('lastName'):
+            file_name = f"{user.get('firstName')}_{user.get('lastName')}.txt"
+            with open(file_name, 'w') as file:
+                for key, value in user.items():
+                    user_dict = str(key) + " : " + str(value) + "\n"
+                    file.write(user_dict)
+
+
+def update_users_json():
+    """
+    Helper function to randomly make some of our users admins
+    :return:
+    """
+    with open('../lesson_7/users.json') as js:
+        data = json.load(js)
+
+    users = data.get('users')
+    counter = 0
+    for item in users:
+        is_admin = random.random() > 0.8
+        if is_admin:
+            key = random.choice(['is_admin', 'admin', 'super_user', 'superuser', 'is_root', 'root'])
+            item[key] = True if random.random() > 0.2 else False
+            print(f'Adding admin key {key} for user {item.get("firstName")}')
+            counter += 1
+    data['users'] = users
+    with open('../lesson_7/users.json', 'w') as js_write:
+        json.dump(data, js_write)
+    print(f'Updated {counter} users')
+
+
 if __name__ == '__main__':
 
     # 1. Distance between 2 points
@@ -126,3 +168,34 @@ if __name__ == '__main__':
         print('There are no roots for your equation')
     else:
         print(f'Roots for your equation is {roots}')
+
+    # 3. Check if user is admin
+    update_users_json()
+    with open('../lesson_7/users.json') as js:
+        data = json.load(js)
+
+    users = data.get('users')
+    for user in users:
+        print(f'user {user.get("firstName")} is admin: {is_admin(user)}')
+
+    #4. Generate new email
+    names = ['Jenny', 'Mike', 'Alise', 'Daniel', 'Mary', 'Jason']
+    domains = ['com', 'net', 'ua', 'uk', 'pl']
+    new_email = generate_email(names, domains)
+    print(new_email)
+
+    #5. Find product
+    with open('products.json', 'r') as jsonfile:
+        data = json.load(jsonfile)
+        all_products = data.get('products')
+
+    search_word = input('What product do you want to find? ')
+    found = find_product(all_products, search_word)
+    print(len(found), found)
+
+    #6. Find user and write info in the file
+    with open('../lesson_7/users.json', 'r') as jsonfile:
+        data = json.load(jsonfile)
+        users = data.get('users')
+
+    write_user_to_file(users, 'Terry')
